@@ -1,0 +1,86 @@
+---
+openapi: 3.0.2
+info:
+  title: UserApi
+  version: 1.0.0
+  description: Specification file for user details
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+paths:
+  /user/{id}:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      summary: Get an User
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "204": {}
+      summary: Update an User
+    delete:
+      responses:
+        "204": {}
+      summary: Delete an User
+    parameters:
+    - name: id
+      in: path
+      required: true
+  /users:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+      summary: List of Users
+  /user:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "201": {}
+      summary: Add an User
+components:
+  schemas:
+    User:
+      title: Root Type for User
+      description: ""
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        age:
+          format: int32
+          type: integer
+        created_on:
+          format: date
+          type: string
+        modifed_on:
+          format: date
+          type: string
+      example:
+        id: 1
+        name: Gautam Bharadwaj
+        age: 22
+        created_on: 2020-11-24
+        modifed_on: 2020-11-30
